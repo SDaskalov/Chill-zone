@@ -7,14 +7,14 @@
 
     public class CategoriesService : ICategoriesService
     {
-        private readonly IDbRepository<JokeCategory> categories;
+        private readonly IDbRepository<PostCategory> categories;
 
-        public CategoriesService(IDbRepository<JokeCategory> categories)
+        public CategoriesService(IDbRepository<PostCategory> categories)
         {
             this.categories = categories;
         }
 
-        public JokeCategory EnsureCategory(string name)
+        public PostCategory EnsureCategory(string name)
         {
             var category = this.categories.All().FirstOrDefault(x => x.Name == name);
             if (category != null)
@@ -22,13 +22,24 @@
                 return category;
             }
 
-            category = new JokeCategory { Name = name };
+            category = new PostCategory { Name = name };
             this.categories.Add(category);
             this.categories.Save();
             return category;
         }
 
-        public IQueryable<JokeCategory> GetAll()
+        public PostCategory Create(string name)
+        {
+            var category = new PostCategory() { Name = name };
+
+            this.categories.Add(category);
+
+            this.categories.Save();
+
+            return category;
+        }
+
+        public IQueryable<PostCategory> GetAll()
         {
             return this.categories.All().OrderBy(x => x.Name);
         }

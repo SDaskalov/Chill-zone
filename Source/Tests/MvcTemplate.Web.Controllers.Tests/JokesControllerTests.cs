@@ -15,18 +15,18 @@
         public void ByIdShouldWorkCorrectly()
         {
             var autoMapperConfig = new AutoMapperConfig();
-            autoMapperConfig.Execute(typeof(JokesController).Assembly);
-            const string JokeContent = "SomeContent";
-            var jokesServiceMock = new Mock<IJokesService>();
-            jokesServiceMock.Setup(x => x.GetById(It.IsAny<string>()))
-                .Returns(new Joke { Content = JokeContent, Category = new JokeCategory { Name = "asda" } });
-            var controller = new JokesController(jokesServiceMock.Object);
+            autoMapperConfig.Execute(typeof(PostsController).Assembly);
+            const string TestContent = "SomeContent";
+            var postsServiceMock = new Mock<IPostsService>();
+            postsServiceMock.Setup(x => x.GetById(It.IsAny<string>()))
+                .Returns(new Post { SharedPhotoUrl = TestContent, Category = new PostCategory { Name = "asda" } });
+            var controller = new PostsController(postsServiceMock.Object);
             controller.WithCallTo(x => x.ById("asdasasd"))
                 .ShouldRenderView("ById")
-                .WithModel<JokeViewModel>(
+                .WithModel<PostViewModel>(
                     viewModel =>
                         {
-                            Assert.AreEqual(JokeContent, viewModel.Content);
+                            Assert.AreEqual(TestContent, viewModel.Content);
                         }).AndNoModelErrors();
         }
     }

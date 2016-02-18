@@ -6,20 +6,20 @@
     using ChillZone.Web.Infrastructure.Mapping;
     using ChillZone.Web.ViewModels.Home;
 
-    public class JokesController : BaseController
+    public class PostsController : BaseController
     {
-        private readonly IPostsService jokes;
+        private readonly IPostsService posts;
 
-        public JokesController(
-            IPostsService jokes)
+        public PostsController(
+            IPostsService posts)
         {
-            this.jokes = jokes;
+            this.posts = posts;
         }
 
         public ActionResult ById(string id)
         {
-            var joke = this.jokes.GetById(id);
-            var viewModel = this.Mapper.Map<JokeViewModel>(joke);
+            var post = this.posts.GetById(id);
+            var viewModel = this.Mapper.Map<PostViewModel>(post);
             return this.View(viewModel);
         }
     }

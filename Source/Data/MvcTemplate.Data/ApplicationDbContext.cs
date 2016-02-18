@@ -18,6 +18,10 @@
 
         public IDbSet<JokeCategory> JokesCategories { get; set; }
 
+        public IDbSet<Post> Posts { get; set; }
+
+        public IDbSet<PostCategory> PostsCategories { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
