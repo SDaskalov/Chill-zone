@@ -13,7 +13,7 @@ namespace ChillZone.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201602212022287_Initial"; }
+            get { return "201602212112056_Initial"; }
         }
         
         string IMigrationMetadata.Source

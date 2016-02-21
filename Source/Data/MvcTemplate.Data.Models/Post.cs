@@ -18,9 +18,9 @@
         }
 
         [Required]
-        public int CategoryName { get; set; }
+        public int CategoryId { get; set; }
 
-        [ForeignKey("CategoryName")]
+        [ForeignKey("CategoryId")]
         public virtual PostCategory Category { get; set; }
 
         [Required]

@@ -13,6 +13,8 @@
         [Required]
         public string Category { get; set; }
 
+        public ApplicationUser Author { get; set; }
+
         [Required]
         public string SharedPhotoUrl { get; set; }
 

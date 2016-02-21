@@ -10,12 +10,14 @@
     public class PostsController : BaseController
     {
         private readonly IDbRepository<Post> posts;
+        private readonly IDbRepository<PostCategory> postCategory;
 
-        public PostsController(IDbRepository<Post> posts)
+        public PostsController(IDbRepository<Post> posts, IDbRepository<PostCategory> postCategory)
         {
             this.posts = posts;
+            this.postCategory = postCategory;
         }
-
+       
         [HttpGet]
         public ActionResult ById(int id)
         {
@@ -40,6 +42,10 @@
                 return this.View(model);
             }
 
+            var category = new PostCategory()
+            {
+                Name = model.Category
+            };
             var post = new Post()
             {
                 SharedPhotoUrl = model.SharedPhotoUrl
@@ -49,8 +55,9 @@
             post.AuthorId = this.User.Identity.GetUserId();
             }
 
-            this.posts.Add(post);
-            this.posts.Save();
+            post.Category = category;
+            category.Posts.Add(post);
+            this.postCategory.Save();
             this.TempData["Notification"] = "Post Created!";
             return this.Redirect("/");
         }

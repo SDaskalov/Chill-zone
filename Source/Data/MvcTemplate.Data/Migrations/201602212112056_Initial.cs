@@ -12,7 +12,7 @@ namespace ChillZone.Data.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        CategoryName = c.Int(nullable: false),
+                        CategoryId = c.Int(nullable: false),
                         SharedPhotoUrl = c.String(nullable: false),
                         UploadPhoto = c.Binary(),
                         AuthorId = c.String(nullable: false, maxLength: 128),
@@ -23,8 +23,8 @@ namespace ChillZone.Data.Migrations
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.AspNetUsers", t => t.AuthorId, cascadeDelete: true)
-                .ForeignKey("dbo.PostCategories", t => t.CategoryName, cascadeDelete: true)
-                .Index(t => t.CategoryName)
+                .ForeignKey("dbo.PostCategories", t => t.CategoryId, cascadeDelete: true)
+                .Index(t => t.CategoryId)
                 .Index(t => t.AuthorId)
                 .Index(t => t.IsDeleted);
             
@@ -98,7 +98,6 @@ namespace ChillZone.Data.Migrations
                         DeletedOn = c.DateTime(),
                     })
                 .PrimaryKey(t => t.Id)
-                .Index(t => t.Name, unique: true)
                 .Index(t => t.IsDeleted);
             
             CreateTable(
@@ -160,7 +159,7 @@ namespace ChillZone.Data.Migrations
             DropForeignKey("dbo.Points", "AuthorId", "dbo.AspNetUsers");
             DropForeignKey("dbo.Comments", "PostId", "dbo.Posts");
             DropForeignKey("dbo.Comments", "AuthorId", "dbo.AspNetUsers");
-            DropForeignKey("dbo.Posts", "CategoryName", "dbo.PostCategories");
+            DropForeignKey("dbo.Posts", "CategoryId", "dbo.PostCategories");
             DropForeignKey("dbo.Posts", "AuthorId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
@@ -173,7 +172,6 @@ namespace ChillZone.Data.Migrations
             DropIndex("dbo.Comments", new[] { "PostId" });
             DropIndex("dbo.Comments", new[] { "AuthorId" });
             DropIndex("dbo.PostCategories", new[] { "IsDeleted" });
-            DropIndex("dbo.PostCategories", new[] { "Name" });
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
@@ -181,7 +179,7 @@ namespace ChillZone.Data.Migrations
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.Posts", new[] { "IsDeleted" });
             DropIndex("dbo.Posts", new[] { "AuthorId" });
-            DropIndex("dbo.Posts", new[] { "CategoryName" });
+            DropIndex("dbo.Posts", new[] { "CategoryId" });
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.Points");
             DropTable("dbo.Comments");

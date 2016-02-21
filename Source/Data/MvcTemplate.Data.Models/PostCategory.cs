@@ -15,9 +15,7 @@
         }
 
         [Required]
-        [Index(IsUnique = true)]
         [MaxLength(100)]
-        [ForeignKey("Name")]
         public string Name { get; set; }
 
         public virtual ICollection<Post> Posts
