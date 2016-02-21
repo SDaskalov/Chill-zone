@@ -18,11 +18,12 @@
         }
 
         [Required]
-        public int CategoryId { get; set; }
+        public int CategoryName { get; set; }
 
-        [ForeignKey("CategoryId")]
+        [ForeignKey("CategoryName")]
         public virtual PostCategory Category { get; set; }
 
+        [Required]
         public string SharedPhotoUrl { get; set; }
 
         public byte[] UploadPhoto { get; set; }
@@ -32,8 +33,6 @@
 
         [ForeignKey("AuthorId")]
         public virtual ApplicationUser Author { get; set; }
-
-        public virtual string UserId { get; set; }
 
         public virtual ICollection<Point> Points
         {

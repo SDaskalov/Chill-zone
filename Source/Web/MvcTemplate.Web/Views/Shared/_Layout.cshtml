@@ -20,13 +20,17 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home", new { area = string.Empty }, null)</li>
-                    <li>@Html.ActionLink("Posts", "Posts","Posts", new { area = string.Empty }, null)</li>
+                    <li>@Html.ActionLink("CreatePost", "Create", "Posts", new { area = string.Empty }, null)</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
     <div class="container body-content">
+    @if (this.TempData["Notification"] != null)
+    {
+        <div class="alert alert-success" role="alert">@this.TempData["Notification"]</div>
+    }
         @RenderBody()
         <hr />
         <footer>

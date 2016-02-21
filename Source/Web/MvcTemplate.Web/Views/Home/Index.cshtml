@@ -9,9 +9,9 @@
         
             <div class="col-sm-4">
                 <div style="align-items:baseline">   
-                <a href="@post.Id"><img src="@post.SharedPhotoUrl" width="300" class="img-responsive" /></a>
+                <a href="Post/@post.Id"><img src="@post.SharedPhotoUrl" width="300" class="img-responsive" /></a>
                     <br />
-                <div>Category <a href="@post.Category">@post.Category</a></div>
+                <div>Category <a href="Category/@post.Category">@post.Category</a></div>
                  </div>
             </div>
         
@@ -22,7 +22,7 @@
     @foreach (var category in Model.Categories)
     {
         <div class="col-md-2">
-            <a href=" @category.Name.ToString()" class="btn btn-info"> @category.Name.ToString()</a>
+            <a href="Category/@category.Name.ToString()" class="btn btn-info"> @category.Name.ToString()</a>
         </div>
     }
 </div>

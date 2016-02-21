@@ -1,5 +1,6 @@
 ﻿namespace ChillZone.Web.ViewModels.Home
 {
+    using System.ComponentModel.DataAnnotations;
     using AutoMapper;
     using ChillZone.Data.Models;
     using ChillZone.Services.Web;
@@ -9,10 +10,10 @@
     {
         public int Id { get; set; }
 
-        public string Content { get; set; }
-
+        [Required]
         public string Category { get; set; }
 
+        [Required]
         public string SharedPhotoUrl { get; set; }
 
         public byte[] UploadPhoto { get; set; }
