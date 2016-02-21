@@ -14,10 +14,6 @@
         {
         }
 
-        public IDbSet<Joke> Jokes { get; set; }
-
-        public IDbSet<JokeCategory> JokesCategories { get; set; }
-
         public IDbSet<Post> Posts { get; set; }
 
         public IDbSet<PostCategory> PostsCategories { get; set; }

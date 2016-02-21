@@ -1,7 +1,8 @@
 ﻿namespace ChillZone.Data.Models
 {
     using System.Collections.Generic;
-
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     using ChillZone.Data.Common.Models;
 
     public class PostCategory : BaseModel<int>
@@ -13,6 +14,9 @@
             this.posts = new HashSet<Post>();
         }
 
+        [Required]
+        [Index(IsUnique = true)]
+        [MaxLength(100)]
         public string Name { get; set; }
 
         public virtual ICollection<Post> Posts

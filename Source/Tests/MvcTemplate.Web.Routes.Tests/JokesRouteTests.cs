@@ -1,4 +1,4 @@
-﻿namespace ChillZone.Web.Routes.Tests
+﻿/*namespace ChillZone.Web.Routes.Tests
 {
     using System.Web.Routing;
     using ChillZone.Web.Controllers;
@@ -17,4 +17,4 @@
             routeCollection.ShouldMap(Url).To<JokesController>(c => c.ById("Mjc2NS4xMjMxMjMxMzEyMw=="));
         }
     }
-}
+}*/

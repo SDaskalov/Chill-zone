@@ -1,4 +1,4 @@
-﻿namespace ChillZone.Web.Controllers.Tests
+﻿/*namespace ChillZone.Web.Controllers.Tests
 {
     using ChillZone.Data.Models;
     using ChillZone.Services.Data;
@@ -30,4 +30,4 @@
                         }).AndNoModelErrors();
         }
     }
-}
+}*/

@@ -1,18 +1,19 @@
 ﻿namespace ChillZone.Data.Migrations
 {
+    using System;
+    using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
     using ChillZone.Common;
-    using ChillZone.Data.Models;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
+    using Models;
 
-    public sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
+    public class Configuration : DbMigrationsConfiguration<ChillZone.Data.ApplicationDbContext>
     {
         public Configuration()
         {
-            this.AutomaticMigrationsEnabled = true;
-            this.AutomaticMigrationDataLossAllowed = false;
+            this.AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(ApplicationDbContext context)
