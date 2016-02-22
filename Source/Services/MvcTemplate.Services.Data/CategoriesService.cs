@@ -4,14 +4,17 @@
 
     using ChillZone.Data.Common;
     using ChillZone.Data.Models;
-
+    using Web;
     public class CategoriesService : ICategoriesService
     {
         private readonly IDbRepository<PostCategory> categories;
+        private readonly IIdentifierProvider identifierProvider;
 
-        public CategoriesService(IDbRepository<PostCategory> categories)
+
+        public CategoriesService(IDbRepository<PostCategory> categories, IIdentifierProvider identifierProvider)
         {
             this.categories = categories;
+            this.identifierProvider = identifierProvider;
         }
 
         public PostCategory EnsureCategory(string name)
@@ -37,6 +40,11 @@
             this.categories.Save();
 
             return category;
+        }
+
+        public PostCategory GetByName(string name)
+        {
+            return this.categories.All().First(x => x.Name == name);
         }
 
         public IQueryable<PostCategory> GetAll()

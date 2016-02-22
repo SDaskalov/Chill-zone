@@ -8,6 +8,8 @@
     {
         IQueryable<PostCategory> GetAll();
 
+        PostCategory GetByName(string name);
+
         PostCategory EnsureCategory(string name);
 
         PostCategory Create(string name);

@@ -1,0 +1,17 @@
+﻿@model ChillZone.Web.ViewModels.Home.PostCategoryViewModel
+@{
+    ViewBag.Title = "Category";
+}
+@foreach(var pos in Model.Posts)
+{ 
+  
+<a href="">
+    <img src="@pos.SharedPhotoUrl" />
+    
+</a><div>
+</div>
+<div>
+    Category: @pos.AuthorId
+</div>
+
+    }

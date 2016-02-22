@@ -25,11 +25,11 @@
         public ActionResult Index()
         {
             var posts = this.posts.GetLatestPosts(50).To<PostViewModel>().ToList();
-            var categories =
-                this.Cache.Get(
-                    "categories",
-                    () => this.postCategories.GetAll().To<PostCategoryViewModel>().ToList(),
-                    30 * 60);
+            var categories = this.postCategories.GetAll().To<PostCategoryViewModel>().ToList();
+                //this.Cache.Get(
+                //    "categories",
+                //    () => this.postCategories.GetAll().To<PostCategoryViewModel>().ToList(),
+                //    30 * 60);
             var viewModel = new IndexViewModel
             {
                 Posts = posts,

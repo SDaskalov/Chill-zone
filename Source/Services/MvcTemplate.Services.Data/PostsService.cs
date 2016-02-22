@@ -18,10 +18,10 @@
             this.identifierProvider = identifierProvider;
         }
 
-        public Post GetById(string id)
+        public Post GetById(int id)
         {
-            var intId = this.identifierProvider.DecodeId(id);
-            var post = this.posts.GetById(intId);
+           // var intId = this.identifierProvider.DecodeId(id);
+            var post = this.posts.GetById(id);
             return post;
         }
 
@@ -33,6 +33,13 @@
         public IQueryable<Post> GetLatestPosts(int count)
         {
             return this.posts.All().OrderBy(x => x.CreatedOn).Take(count);
+        }
+
+        public Post Create(Post post)
+        {
+            this.posts.Add(post);
+            this.posts.Save();
+            return post;
         }
     }
 }

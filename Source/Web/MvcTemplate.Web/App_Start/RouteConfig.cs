@@ -9,6 +9,10 @@
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.MapRoute(
+               name: "Category",
+               url: "Category/{name}",
+               defaults: new { controller = "Posts", action = "Category" });
+            routes.MapRoute(
                 name: "Post",
                 url: "Post/{id}",
                 defaults: new { controller = "Posts", action = "ById" });

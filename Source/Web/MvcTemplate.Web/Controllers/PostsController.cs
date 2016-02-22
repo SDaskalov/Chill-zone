@@ -9,15 +9,23 @@
 
     public class PostsController : BaseController
     {
-        private readonly IDbRepository<Post> posts;
-        private readonly IDbRepository<PostCategory> postCategory;
+        private readonly IPostsService posts;
+        private readonly ICategoriesService postCategory;
 
-        public PostsController(IDbRepository<Post> posts, IDbRepository<PostCategory> postCategory)
+        public PostsController(IPostsService posts, ICategoriesService postCategory)
         {
             this.posts = posts;
             this.postCategory = postCategory;
         }
-       
+
+        [HttpGet]
+        public ActionResult Category(string name)
+        {
+           var category= this.postCategory.GetByName(name);
+            var viewModel = this.Mapper.Map<PostCategoryViewModel>(category);
+            return this.View(viewModel);
+        }
+
         [HttpGet]
         public ActionResult ById(int id)
         {
@@ -42,22 +50,15 @@
                 return this.View(model);
             }
 
-            var category = new PostCategory()
-            {
-                Name = model.Category
-            };
+            var categoryPostToAdd = this.postCategory.EnsureCategory(model.Category);
             var post = new Post()
             {
-                SharedPhotoUrl = model.SharedPhotoUrl
-            };
-            if (this.User.Identity.IsAuthenticated)
-            {
-            post.AuthorId = this.User.Identity.GetUserId();
-            }
-
-            post.Category = category;
-            category.Posts.Add(post);
-            this.postCategory.Save();
+                SharedPhotoUrl = model.SharedPhotoUrl,
+                Category = categoryPostToAdd,
+                AuthorId = this.User.Identity.GetUserId()
+             };
+            categoryPostToAdd.Posts.Add(post);
+            this.posts.Create(post);
             this.TempData["Notification"] = "Post Created!";
             return this.Redirect("/");
         }

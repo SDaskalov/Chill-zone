@@ -10,6 +10,8 @@
 
         IQueryable<Post> GetLatestPosts(int count);
 
-        Post GetById(string id);
+        Post GetById(int id);
+
+        Post Create(Post post);
     }
 }
