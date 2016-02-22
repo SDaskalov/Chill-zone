@@ -5,15 +5,14 @@
 <div>
     @foreach (var post in Model.Posts)
     {
-        <div><h3>@post.Title</h3></div>
+        <div><h3><a href="/Post/@Model.Id">@post.Title</a></h3></div>
         <div>
             <a href="/Post/@post.Id">
                 <img src="@post.SharedPhotoUrl" />
-
             </a><div>
             </div>
             <div>
-                Category: @post.AuthorId
+                Author: @post.Author.UserName
             </div>
         </div>
         <br />

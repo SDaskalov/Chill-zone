@@ -26,8 +26,6 @@
         [Required]
         public string SharedPhotoUrl { get; set; }
 
-        public byte[] UploadPhoto { get; set; }
-
         [Required]
         public string Title { get; set; }
 

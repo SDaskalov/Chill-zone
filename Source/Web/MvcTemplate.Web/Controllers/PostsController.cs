@@ -41,6 +41,18 @@
             return this.View();
         }
 
+        [HttpGet]
+        public ActionResult CreatePhoto()
+        {
+            return this.PartialView("_PhotoPartial");
+        }
+
+        [HttpGet]
+        public ActionResult CreateVIdeo()
+        {
+            return this.PartialView("_VideoPartial");
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(PostViewModel model)
@@ -54,7 +66,7 @@
             var post = new Post()
             {
                 SharedPhotoUrl = model.SharedPhotoUrl,
-                Title=model.Title,
+                Title = model.Title,
                 Category = categoryPostToAdd,
                 AuthorId = this.User.Identity.GetUserId()
              };
