@@ -29,6 +29,9 @@
         public byte[] UploadPhoto { get; set; }
 
         [Required]
+        public string Title { get; set; }
+
+        [Required]
         public string AuthorId { get; set; }
 
         [ForeignKey("AuthorId")]

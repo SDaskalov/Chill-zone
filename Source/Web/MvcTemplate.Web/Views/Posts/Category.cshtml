@@ -2,16 +2,20 @@
 @{
     ViewBag.Title = "Category";
 }
-@foreach(var pos in Model.Posts)
-{ 
-  
-<a href="">
-    <img src="@pos.SharedPhotoUrl" />
-    
-</a><div>
-</div>
 <div>
-    Category: @pos.AuthorId
-</div>
+    @foreach (var post in Model.Posts)
+    {
+        <div><h3>@post.Title</h3></div>
+        <div>
+            <a href="/Post/@post.Id">
+                <img src="@post.SharedPhotoUrl" />
 
+            </a><div>
+            </div>
+            <div>
+                Category: @post.AuthorId
+            </div>
+        </div>
+        <br />
     }
+</div>

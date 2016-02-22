@@ -54,6 +54,7 @@
             var post = new Post()
             {
                 SharedPhotoUrl = model.SharedPhotoUrl,
+                Title=model.Title,
                 Category = categoryPostToAdd,
                 AuthorId = this.User.Identity.GetUserId()
              };

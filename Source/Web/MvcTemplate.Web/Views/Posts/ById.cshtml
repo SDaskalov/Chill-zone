@@ -3,10 +3,12 @@
     ViewBag.Title = "ById";
 }
 <div>
-    <a href="@Model.SharedPhotoUrl"><img src="@Model.SharedPhotoUrl" /></a>
+    <div><h3>@Model.Title</h3></div>
+    <div>
+        <a href="@Model.SharedPhotoUrl"><img src="@Model.SharedPhotoUrl" /></a>
 
+    </div>
+    <div>
+        Category: @Model.Category
+    </div>
 </div>
-<div>
-    Category: @Model.Category
-</div>
-
