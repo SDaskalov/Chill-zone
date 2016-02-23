@@ -6,7 +6,7 @@
     using ChillZone.Data.Models;
     using Common.Models;
     using Microsoft.AspNet.Identity.EntityFramework;
-
+    using MvcTemplate.Data.Models;
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
@@ -17,6 +17,10 @@
         public IDbSet<Post> Posts { get; set; }
 
         public IDbSet<PostCategory> PostsCategories { get; set; }
+
+        public IDbSet<Comment> Comments { get; set; }
+
+        public IDbSet<Point> Points { get; set; }
 
         public static ApplicationDbContext Create()
         {

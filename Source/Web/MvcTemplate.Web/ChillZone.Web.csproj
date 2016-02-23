@@ -218,6 +218,7 @@
     <Compile Include="ViewModels\Account\SendCodeViewModel.cs" />
     <Compile Include="ViewModels\Account\VerifyCodeViewModel.cs" />
     <Compile Include="ViewModels\Home\IndexViewModel.cs" />
+    <Compile Include="ViewModels\Post\CommentViewModel.cs" />
     <Compile Include="ViewModels\Post\PostCategoryViewModel.cs" />
     <Compile Include="ViewModels\Post\PostViewModel.cs" />
     <Compile Include="ViewModels\Manage\AddPhoneNumberViewModel.cs" />
@@ -302,6 +303,7 @@
     <Content Include="Views\Shared\_PhotoPartial.cshtml" />
     <Content Include="Views\Shared\_VideoPartial.cshtml" />
     <Content Include="Views\Shared\_CategoriesPartial.cshtml" />
+    <Content Include="Views\Shared\_CommentPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

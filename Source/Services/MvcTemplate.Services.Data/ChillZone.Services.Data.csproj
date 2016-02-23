@@ -43,8 +43,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CategoriesService.cs" />
+    <Compile Include="CommentsService.cs" />
     <Compile Include="ICategoriesService.cs" />
+    <Compile Include="ICommentsService.cs" />
+    <Compile Include="IPointsService.cs" />
     <Compile Include="IPostsService.cs" />
+    <Compile Include="PointsService.cs" />
     <Compile Include="PostsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -11,10 +11,6 @@
             <a href="@Model.SharedUrl"><img src="@Model.SharedUrl" /></a>
 
         </div>
-            <div>
-                Category: @Model.Category
-            </div>
-        
     }
     else
     {
@@ -23,8 +19,64 @@
                 src="@Model.SharedUrl"
                 frameborder="0"
                 allowfullscreen></iframe>
-                    <br />
-        <div>Created by:@Model.Author.UserName</div>
-        <div>Category <a href="Category/@Model.Category">@Model.Category</a></div>
+                <br />
+
+    }
+    @using (Html.BeginForm("Like", "Posts", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {       
+
+                @Html.HiddenFor(m => m.Id)
+                <input type="submit" class="btn btn-success" data-action="up" value="Like" />
+        
+    }
+    <br />
+    @using (Html.BeginForm("Dislike", "Posts", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {       
+                @Html.HiddenFor(m => m.Id)
+                <input type="submit" class="btn btn-danger" data-action="down" value="Dislike" />
+          
+    }
+    <br />
+
+    <div ><b> Points: </b>@Model.Points.Sum(x => x.Value) </div>
+    <br />
+
+    <div><b>Created by:</b>@Model.Author.UserName</div>
+    <br />
+    <div><b>Category :</b><a href="Category/@Model.Category">@Model.Category</a></div>
+    <br />
+    <div><b>Created on:</b>@Model.CreatedOn</div>
+</div>
+
+<br />
+
+@using (Html.BeginForm("Comment", "Posts", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+    @Html.AntiForgeryToken()
+    <h4>Create a new Comment.</h4>
+                <hr />
+                @Html.ValidationSummary("", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(m => m.NewComment.Content, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.NewComment.Content, new { @class = "form-control" })
+                        @Html.HiddenFor(m => m.Id)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" class="btn btn-default" value="Comment" />
+                    </div>
+                </div>
+}
+
+<br />
+<div class="container">
+    @foreach (var comment in Model.Comments)
+    {
+        <ul class="list-group">
+            <li class="list-group-item"><b>@Model.Author.UserName said:</b></li>
+            <li class="list-group-item">@comment.Content</li>
+        </ul>
     }
 </div>

@@ -5,11 +5,11 @@
     using ChillZone.Data.Common;
     using ChillZone.Data.Models;
     using Web;
+
     public class CategoriesService : ICategoriesService
     {
         private readonly IDbRepository<PostCategory> categories;
         private readonly IIdentifierProvider identifierProvider;
-
 
         public CategoriesService(IDbRepository<PostCategory> categories, IIdentifierProvider identifierProvider)
         {

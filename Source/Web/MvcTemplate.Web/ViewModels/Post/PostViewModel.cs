@@ -1,10 +1,15 @@
 ﻿namespace ChillZone.Web.ViewModels.Home
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using AutoMapper;
+    using System.Linq;
     using ChillZone.Data.Models;
     using ChillZone.Services.Web;
     using ChillZone.Web.Infrastructure.Mapping;
+    using MvcTemplate.Data.Models;
 
     public class PostViewModel : IMapFrom<Post>, IHaveCustomMappings
     {
@@ -18,8 +23,16 @@
 
         public ApplicationUser Author { get; set; }
 
+        public DateTime CreatedOn { get; set; }
+
         [Required]
         public string SharedUrl { get; set; }
+
+        public IEnumerable<Comment> Comments { get; set; }
+
+        public CommentViewModel NewComment { get; set; }
+
+        public IEnumerable<Point> Points { get; set; }
 
         public bool IsVideo { get; set; }
 
@@ -36,6 +49,7 @@
         {
             configuration.CreateMap<Post, PostViewModel>()
                 .ForMember(x => x.Category, opt => opt.MapFrom(x => x.Category.Name));
+
         }
     }
 }

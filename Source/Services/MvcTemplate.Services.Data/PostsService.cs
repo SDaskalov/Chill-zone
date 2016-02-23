@@ -32,7 +32,7 @@
 
         public IQueryable<Post> GetLatestPosts(int count)
         {
-            return this.posts.All().OrderBy(x => x.CreatedOn).Take(count);
+            return this.posts.All().OrderByDescending(x => x.CreatedOn).Take(count);
         }
 
         public Post Create(Post post)

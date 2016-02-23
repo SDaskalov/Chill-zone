@@ -12,11 +12,8 @@
                 <div>
                     <a href="/Post/@post.Id">
                         <img src="@post.SharedUrl" />
-                    </a><div>
-                    </div>
-                    <div>
-                        Author: @post.Author.UserName
-                    </div>
+                    </a>
+
                 </div>
                 <br />
             }
@@ -28,10 +25,21 @@
                         frameborder="0"
                         allowfullscreen></iframe>
                         <br />
-                        <div>Created by:@post.Author.UserName</div>
+
 
             }
+            <div class="col-md-1">
+                <div class="well text-center ">
+
+                    <div class="row"> @post.Points.Sum(x => x.Value) </div>
+
+                </div>
+            </div>
+            <div><b>Created by:</b>@post.Author.UserName</div>
+            <br />
+            <div><b>Created on:</b>@post.CreatedOn</div>
         </div>
+
 
 
 

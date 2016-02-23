@@ -16,24 +16,32 @@
                 </div>
                 <div class="span10">
                     <div><h3><a href="Post/@post.Id">@post.Title</a></h3></div>
-                    @if (post.IsVideo==false)
+                    @if (post.IsVideo == false)
                     {
-                    <a href="Post/@post.Id"><img src="@post.SharedUrl" width="300" class="img-responsive" /></a>
-                    <br />
-                    <div>Created by:@post.Author.UserName</div>
-                    <div>Category <a href="Category/@post.Category">@post.Category</a></div>
+                        <a href="Post/@post.Id"><img src="@post.SharedUrl" width="300" class="img-responsive" /></a>
+                        <br />
                     }
                     else
                     {
-                             <iframe width="560"
-                                        height="315"
-                                        src="@post.SharedUrl"
-                                        frameborder="0"
-                                        allowfullscreen></iframe>
-                          <br />
-                        <div>Created by:@post.Author.UserName</div>
-                        <div>Category <a href="Category/@post.Category">@post.Category</a></div>
+                        <iframe width="560"
+                                height="315"
+                                src="@post.SharedUrl"
+                                frameborder="0"
+                                allowfullscreen></iframe>
+                                <br />
+
                     }
+
+                    <div class="col-md-1">
+                        <div class="well text-center ">
+                            <div class="row"> @post.Points.Sum(x => x.Value) </div>
+                        </div>
+                    </div>
+                    <div><b>Created by:</b>@post.Author.UserName</div>
+                    <br />
+                    <div><b>Category :</b><a href="Category/@post.Category">@post.Category</a></div>
+                    <br />
+                    <div><b>Created on:</b>@post.CreatedOn</div>
                 </div>
             </div>
         </div>
@@ -49,3 +57,9 @@
         </div>
     }
 </div>
+<style>
+    div[data-action="up"], div[data-action="down"] {
+        cursor: pointer;
+    }
+</style>
+
