@@ -24,10 +24,13 @@
         public virtual PostCategory Category { get; set; }
 
         [Required]
-        public string SharedPhotoUrl { get; set; }
+        public string SharedUrl { get; set; }
 
         [Required]
         public string Title { get; set; }
+
+        [Required]
+        public bool IsVideo { get; set; }
 
         [Required]
         public string AuthorId { get; set; }

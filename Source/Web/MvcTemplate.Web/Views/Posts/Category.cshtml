@@ -5,16 +5,46 @@
 <div>
     @foreach (var post in Model.Posts)
     {
-        <div><h3><a href="/Post/@Model.Id">@post.Title</a></h3></div>
-        <div>
-            <a href="/Post/@post.Id">
-                <img src="@post.SharedPhotoUrl" />
-            </a><div>
-            </div>
-            <div>
-                Author: @post.Author.UserName
-            </div>
+        <div class="span10">
+            <div><h3><a href="/Post/@Model.Id">@post.Title</a></h3></div>
+            @if (post.IsVideo == false)
+            {
+                <div>
+                    <a href="/Post/@post.Id">
+                        <img src="@post.SharedUrl" />
+                    </a><div>
+                    </div>
+                    <div>
+                        Author: @post.Author.UserName
+                    </div>
+                </div>
+                <br />
+            }
+            else
+            {
+                <iframe width="560"
+                        height="315"
+                        src="@post.SharedUrl"
+                        frameborder="0"
+                        allowfullscreen></iframe>
+                        <br />
+                        <div>Created by:@post.Author.UserName</div>
+
+            }
         </div>
-        <br />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 </div>

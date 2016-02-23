@@ -2,13 +2,29 @@
 @{
     ViewBag.Title = "ById";
 }
-<div>
-    <div><h3>@Model.Title</h3></div>
-    <div>
-        <a href="@Model.SharedPhotoUrl"><img src="@Model.SharedPhotoUrl" /></a>
 
-    </div>
-    <div>
-        Category: @Model.Category
-    </div>
+<div class="span10">
+    <div><h3>@Model.Title</h3></div>
+    @if (Model.IsVideo == false)
+    {
+        <div>
+            <a href="@Model.SharedUrl"><img src="@Model.SharedUrl" /></a>
+
+        </div>
+            <div>
+                Category: @Model.Category
+            </div>
+        
+    }
+    else
+    {
+        <iframe width="560"
+                height="315"
+                src="@Model.SharedUrl"
+                frameborder="0"
+                allowfullscreen></iframe>
+                    <br />
+        <div>Created by:@Model.Author.UserName</div>
+        <div>Category <a href="Category/@Model.Category">@Model.Category</a></div>
+    }
 </div>

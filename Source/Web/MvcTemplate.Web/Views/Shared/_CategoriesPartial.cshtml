@@ -1,0 +1,15 @@
+﻿@model ChillZone.Web.ViewModels.Home.IndexViewModel
+
+<div class="dropdown" >
+    <button class="btn btn-default dropdown-toggle"  type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        Categories
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        @foreach (var cate in Model.Categories)
+        {
+            <li role="separator" class="divider"></li>
+            <li><a href="Category/@cate.Name">@cate.Name</a></li>
+        }
+    </ul>
+</div>

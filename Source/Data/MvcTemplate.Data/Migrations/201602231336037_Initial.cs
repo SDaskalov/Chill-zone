@@ -3,7 +3,7 @@ namespace ChillZone.Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Init : DbMigration
+    public partial class Initial : DbMigration
     {
         public override void Up()
         {
@@ -13,9 +13,9 @@ namespace ChillZone.Data.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         CategoryId = c.Int(nullable: false),
-                        SharedPhotoUrl = c.String(nullable: false),
-                        UploadPhoto = c.Binary(),
+                        SharedUrl = c.String(nullable: false),
                         Title = c.String(nullable: false),
+                        IsVideo = c.Boolean(nullable: false),
                         AuthorId = c.String(nullable: false, maxLength: 128),
                         CreatedOn = c.DateTime(nullable: false),
                         ModifiedOn = c.DateTime(),

@@ -6,7 +6,7 @@
     using Data.Common;
     using Data.Models;
     using Microsoft.AspNet.Identity;
-
+    using System.Text.RegularExpressions;
     public class PostsController : BaseController
     {
         private readonly IPostsService posts;
@@ -44,13 +44,21 @@
         [HttpGet]
         public ActionResult CreatePhoto()
         {
-            return this.PartialView("_PhotoPartial");
+            var post = new PostViewModel
+            {
+                IsVideo = false
+            };
+            return this.PartialView("_PhotoPartial", post);
         }
 
         [HttpGet]
         public ActionResult CreateVIdeo()
         {
-            return this.PartialView("_VideoPartial");
+            var post = new PostViewModel
+            {
+                IsVideo = true
+            };
+            return this.PartialView("_VideoPartial", post);
         }
 
         [HttpPost]
@@ -63,9 +71,10 @@
             }
 
             var categoryPostToAdd = this.postCategory.EnsureCategory(model.Category);
-            var post = new Post()
+           var post = new Post()
             {
-                SharedPhotoUrl = model.SharedPhotoUrl,
+                IsVideo = model.IsVideo,
+                SharedUrl = model.SharedUrl,
                 Title = model.Title,
                 Category = categoryPostToAdd,
                 AuthorId = this.User.Identity.GetUserId()

@@ -1,5 +1,6 @@
 ﻿namespace MvcTemplate.Data.Models
 {
+    using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using ChillZone.Data.Common.Models;
     using ChillZone.Data.Models;

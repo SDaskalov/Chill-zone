@@ -19,9 +19,9 @@
         public ApplicationUser Author { get; set; }
 
         [Required]
-        public string SharedPhotoUrl { get; set; }
+        public string SharedUrl { get; set; }
 
-        public byte[] UploadPhoto { get; set; }
+        public bool IsVideo { get; set; }
 
         public string Url
         {

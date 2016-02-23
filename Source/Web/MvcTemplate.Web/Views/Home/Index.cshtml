@@ -2,27 +2,38 @@
 @{
     ViewBag.Title = "Home Page";
 }
+<div>
+    @Html.Partial("_CategoriesPartial")
+</div>
 <h1>Latest Posts</h1>
+
 <div class="row">
-    <h1>Embedded Video Example</h1>
-    <p>The following video provides an introduction to WebMatrix:</p>
-    <iframe width="560"
-            height="315"
-            src="http://www.youtube.com/embed/fxCEcPxUbYA"
-            frameborder="0"
-            allowfullscreen></iframe>
     @foreach (var post in Model.Posts)
     {
         <div class="container-fluid">
             <div class="row-fluid">
                 <div class="span2">
-                      </div>
+                </div>
                 <div class="span10">
                     <div><h3><a href="Post/@post.Id">@post.Title</a></h3></div>
-                    <a href="Post/@post.Id"><img src="@post.SharedPhotoUrl" width="300" class="img-responsive" /></a>
+                    @if (post.IsVideo==false)
+                    {
+                    <a href="Post/@post.Id"><img src="@post.SharedUrl" width="300" class="img-responsive" /></a>
                     <br />
                     <div>Created by:@post.Author.UserName</div>
                     <div>Category <a href="Category/@post.Category">@post.Category</a></div>
+                    }
+                    else
+                    {
+                             <iframe width="560"
+                                        height="315"
+                                        src="@post.SharedUrl"
+                                        frameborder="0"
+                                        allowfullscreen></iframe>
+                          <br />
+                        <div>Created by:@post.Author.UserName</div>
+                        <div>Category <a href="Category/@post.Category">@post.Category</a></div>
+                    }
                 </div>
             </div>
         </div>

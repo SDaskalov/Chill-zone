@@ -1,14 +1,17 @@
 ﻿@model ChillZone.Web.ViewModels.Home.PostViewModel
 
 <div class="form-group">
-    @Html.LabelFor(m => m.SharedPhotoUrl, new { @class = "col-md-2 control-label" })
+    @Html.LabelFor(m => m.SharedUrl, new { @class = "col-md-2 control-label" })
     <div class="col-md-10">
-        @Html.TextBoxFor(m => m.SharedPhotoUrl, new { @class = "form-control" })
-    </div>
+        @Html.TextBoxFor(m => m.SharedUrl, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.IsVideo, new { @hidden="hidden" })
+
+
+           </div>
 </div>
+
 <div class="form-group">
     <div class="col-md-offset-2 col-md-10">
-        sadfsadfsadfsadfsafsadfsaddfsadf
         <input type="submit" class="btn btn-default" value="Create Post" />
     </div>
 </div>
