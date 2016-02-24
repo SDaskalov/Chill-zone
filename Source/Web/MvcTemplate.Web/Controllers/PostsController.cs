@@ -109,10 +109,11 @@
         [ValidateAntiForgeryToken]
         public ActionResult Comment(PostViewModel model)
         {
+            var user = this.User.Identity.GetUserId();
             var comment = new Comment
             {
                 Content = model.NewComment.Content,
-                AuthorId = this.User.Identity.GetUserId(),
+                AuthorId = user,
                 PostId = model.Id
             };
             this.postComments.Add(comment);
