@@ -80,7 +80,7 @@
                 AuthorId = this.User.Identity.GetUserId()
             };
             this.postPoints.Add(point);
-            return this.Redirect("/");
+            return this.Redirect(string.Format("/Post/{0}", model.Id));
         }
 
         public ActionResult Delete(PostViewModel model)
@@ -101,7 +101,7 @@
                 AuthorId = this.User.Identity.GetUserId()
             };
             this.postPoints.Add(point);
-            return this.Redirect("/");
+            return this.Redirect(string.Format("/Post/{0}", model.Id));
         }
 
         [HttpPost]

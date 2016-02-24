@@ -17,7 +17,7 @@
         public void CreateMappings(IMapperConfiguration configuration)
         {
             configuration.CreateMap<PostCategory, PostCategoryViewModel>()
-                .ForMember(x => x.Name, opt => opt.MapFrom(x => x.Posts.Where(s => s.IsDeleted == false)));
+                .ForMember(x => x.Name, opt => opt.MapFrom(x => x.Posts.OrderByDescending(s => s.Points.Sum(w => w.Value))));
         }
     }
 }
