@@ -139,6 +139,12 @@
                 Category = categoryPostToAdd,
                 AuthorId = this.User.Identity.GetUserId()
              };
+            if (post.IsVideo)
+            {
+                var videoId = post.SharedUrl.Split('=');
+                post.SharedUrl = @"https://www.youtube.com/embed/" + videoId[videoId.Count() - 1];
+            }
+
             categoryPostToAdd.Posts.Add(post);
             this.posts.Create(post);
             this.TempData["Notification"] = "Post Created!";

@@ -16,76 +16,79 @@
                 }
                 else
                 {
-                    <iframe width="560"
-                            height="315"
-                            src="@Model.SharedUrl"
-                            frameborder="0"
-                            allowfullscreen></iframe>
-                            <br />
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src="@Model.SharedUrl"></iframe>
 
-                }
-                @using (Html.BeginForm("Like", "Posts", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    </div>
+                    <br />
+
+                    }
+                    @using (Html.BeginForm("Like", "Posts", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                 {
 
-                    @Html.HiddenFor(m => m.Id)
-                    <input type="submit" class="btn btn-success" data-action="up" value="Like" />
+                        @Html.HiddenFor(m => m.Id)
+                        <input type="submit" class="btn btn-success" data-action="up" value="Like" />
 
-                }
-                <br />
-                @using (Html.BeginForm("Dislike", "Posts", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                {
-                    @Html.HiddenFor(m => m.Id)
-                    <input type="submit" class="btn btn-danger" data-action="down" value="Dislike" />
-
-                }
-                <br />
-                @if (User.IsInRole("Administrator"))
-                {
-                    using (Html.BeginForm("Delete", "Posts", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    }
+                    <br />
+                    @using (Html.BeginForm("Dislike", "Posts", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                 {
                         @Html.HiddenFor(m => m.Id)
-                        <input type="submit" class="btn btn-danger" data-action="down" value="DELETE" />
-                    }
-                }
-                <ul class="list-group">
-                    <li class="list-group-item"><b> Points: </b>@Model.Points.Sum(x => x.Value)</li>
-                    <li class="list-group-item"><b>Created by:</b>@Model.Author.UserName</li>
-                    <li class="list-group-item"><b>Category :</b><a href="/Category/@Model.Category">@Model.Category</a></li>
-                    <li class="list-group-item"><b>Created on:</b>@Model.CreatedOn</li>
-                </ul>
+                        <input type="submit" class="btn btn-danger" data-action="down" value="Dislike" />
 
-              
-                @using (Html.BeginForm("Comment", "Posts", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-            {
-                    @Html.AntiForgeryToken()
-                    <h4>Create a new Comment.</h4>
-                    <hr />
-                    @Html.ValidationSummary("", new { @class = "text-danger" })
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.NewComment.Content, new { @class = "col-md-2 control-label" })
-                        <div class="col-md-10">
-                            @Html.TextBoxFor(m => m.NewComment.Content, new { @class = "form-control" })
+                    }
+                    <br />
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        using (Html.BeginForm("Delete", "Posts", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
                             @Html.HiddenFor(m => m.Id)
+                            <input type="submit" class="btn btn-danger" data-action="down" value="DELETE" />
+                        }
+                    }
+                    <ul class="list-group">
+                        <li class="list-group-item"><b> Points: </b>@Model.Points.Sum(x => x.Value)</li>
+                        <li class="list-group-item"><b>Created by:</b>@Model.Author.UserName</li>
+                        <li class="list-group-item"><b>Category :</b><a href="/Category/@Model.Category">@Model.Category</a></li>
+                        <li class="list-group-item"><b>Created on:</b>@Model.CreatedOn</li>
+                    </ul>
+
+
+                    @using (Html.BeginForm("Comment", "Posts", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <h4>Create a new Comment.</h4>
+                        <hr />
+                        @Html.ValidationSummary("", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.NewComment.Content, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.NewComment.Content, new { @class = "form-control" })
+                                @Html.HiddenFor(m => m.Id)
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" class="btn btn-default" value="Comment" />
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" class="btn btn-default" value="Comment" />
+                            </div>
                         </div>
-                    </div>
-                }
+                    }
+                </div>
             </div>
         </div>
     </div>
-</div>
-<br />
-<div class="container">
-    @foreach (var comment in Model.Comments)
-            {
-        <ul class="list-group">
-            <li class="list-group-item"><b>@comment.Author.UserName   
-                 said:</b></li>
+    <br />
+    <div class="container">
+        @foreach (var comment in Model.Comments)
+        {
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <b>
+                        @comment.Author.UserName
+                    said:
+                </b>
+            </li>
             <li class="list-group-item">@comment.Content</li>
         </ul>
-    }
-</div>
+        }
+    </div>
