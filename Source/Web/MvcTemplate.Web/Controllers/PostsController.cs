@@ -1,5 +1,6 @@
 ﻿namespace ChillZone.Web.Controllers
 {
+    using System.Linq;
     using System.Text.RegularExpressions;
     using System.Web.Mvc;
     using ChillZone.Services.Data;
@@ -16,7 +17,7 @@
         private readonly ICommentsService postComments;
         private readonly IPointsService postPoints;
 
-        public PostsController(IPostsService posts, ICategoriesService postCategory, ICommentsService postComments,IPointsService postPoints)
+        public PostsController(IPostsService posts, ICategoriesService postCategory, ICommentsService postComments, IPointsService postPoints)
         {
             this.posts = posts;
             this.postCategory = postCategory;
@@ -27,7 +28,7 @@
         [HttpGet]
         public ActionResult Category(string name)
         {
-           var category= this.postCategory.GetByName(name);
+           var category = this.postCategory.GetByName(name);
             var viewModel = this.Mapper.Map<PostCategoryViewModel>(category);
             return this.View(viewModel);
         }
@@ -79,6 +80,13 @@
                 AuthorId = this.User.Identity.GetUserId()
             };
             this.postPoints.Add(point);
+            return this.Redirect("/");
+        }
+
+        public ActionResult Delete(PostViewModel model)
+        {
+           var post = this.posts.GetById(model.Id);
+            this.posts.Delete(post);
             return this.Redirect("/");
         }
 

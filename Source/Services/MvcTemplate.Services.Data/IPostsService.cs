@@ -13,5 +13,7 @@
         Post GetById(int id);
 
         Post Create(Post post);
+
+        void Delete(Post post);
     }
 }

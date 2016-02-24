@@ -41,5 +41,11 @@
             this.posts.Save();
             return post;
         }
+
+        public void Delete(Post post)
+        {
+            this.posts.Delete(post);
+            this.posts.Save();
+        }
     }
 }

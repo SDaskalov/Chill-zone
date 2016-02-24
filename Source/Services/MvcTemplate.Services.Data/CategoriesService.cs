@@ -44,12 +44,12 @@
 
         public PostCategory GetByName(string name)
         {
-            return this.categories.All().First(x => x.Name == name);
+            return this.categories.All().Where(x => x.IsDeleted == false).First(x => x.Name == name);
         }
 
         public IQueryable<PostCategory> GetAll()
         {
-            return this.categories.All().OrderBy(x => x.Name);
+            return this.categories.All().Where(x => x.IsDeleted == false).OrderBy(x => x.Name);
         }
     }
 }

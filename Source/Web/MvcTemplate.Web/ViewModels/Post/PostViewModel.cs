@@ -4,8 +4,8 @@
     using System.Collections;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using AutoMapper;
     using System.Linq;
+    using AutoMapper;
     using ChillZone.Data.Models;
     using ChillZone.Services.Web;
     using ChillZone.Web.Infrastructure.Mapping;
@@ -49,7 +49,6 @@
         {
             configuration.CreateMap<Post, PostViewModel>()
                 .ForMember(x => x.Category, opt => opt.MapFrom(x => x.Category.Name));
-
         }
     }
 }

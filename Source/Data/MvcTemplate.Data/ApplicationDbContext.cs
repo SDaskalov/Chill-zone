@@ -7,6 +7,7 @@
     using Common.Models;
     using Microsoft.AspNet.Identity.EntityFramework;
     using MvcTemplate.Data.Models;
+
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()

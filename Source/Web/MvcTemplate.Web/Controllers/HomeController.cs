@@ -24,7 +24,7 @@
 
         public ActionResult Index()
         {
-            var posts = this.posts.GetLatestPosts(50).To<PostViewModel>().ToList();
+            var posts = this.posts.GetLatestPosts(50).Where(x => x.IsDeleted == false).To<PostViewModel>().ToList();
             var categories = this.postCategories.GetAll().To<PostCategoryViewModel>().ToList();
             var viewModel = new IndexViewModel
             {

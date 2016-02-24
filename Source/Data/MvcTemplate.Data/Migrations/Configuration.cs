@@ -1,4 +1,4 @@
-namespace ChillZone.Data.Migrations
+﻿namespace ChillZone.Data.Migrations
 {
     using System;
     using System.Data.Entity;
