@@ -41,7 +41,7 @@
             get
             {
                 IIdentifierProvider identifier = new IdentifierProvider();
-                return $"/Post/{identifier.EncodeId(this.Id)}";
+                return string.Format("/Post/{0}", identifier.EncodeId(this.Id));
             }
         }
 
