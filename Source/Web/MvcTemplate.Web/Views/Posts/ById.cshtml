@@ -12,7 +12,9 @@
             <div class="panel-body">
                 @if (Model.IsVideo == false)
                 {
-                    <a href="@Model.SharedUrl"><img src="@Model.SharedUrl" /></a>
+                    
+                        <a href="@Model.SharedUrl"><img src="~/Content/Image/loading-x.gif" class="img-responsive" id="myimg" /></a>
+                    <br />
                 }
                 else
                 {
@@ -47,10 +49,10 @@
                         }
                     }
                     <ul class="list-group">
-                        <li class="list-group-item"><b> Points: </b>@Model.Points.Sum(x => x.Value)</li>
-                        <li class="list-group-item"><b>Created by:</b>@Model.Author.UserName</li>
-                        <li class="list-group-item"><b>Category :</b><a href="/Category/@Model.Category">@Model.Category</a></li>
-                        <li class="list-group-item"><b>Created on:</b>@Model.CreatedOn</li>
+                        <li class="list-group-item"><b> Points : </b>@Model.Points.Sum(x => x.Value)</li>
+                        <li class="list-group-item"><b>Created by : </b>@Model.Author.UserName</li>
+                        <li class="list-group-item"><b>Category : </b><a href="/Category/@Model.Category">@Model.Category</a></li>
+                        <li class="list-group-item"><b>Created on : </b>@Model.CreatedOn</li>
                     </ul>
 
 
@@ -92,3 +94,14 @@
         </ul>
         }
     </div>
+@section Scripts{
+    <script>
+        $(function () {
+            $('#myimg').load(function () {
+                $(this).unbind('load');
+                this.src = '@Model.SharedUrl';
+            });
+        });
+    </script>
+    
+    }

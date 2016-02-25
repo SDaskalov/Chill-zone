@@ -14,8 +14,9 @@
                 <div class="panel-body">
                     @if (post.IsVideo == false)
                     {
+                        
                         <a href="/Post/@post.Id">
-                            <img src="@post.SharedUrl" />
+                            <img src="~/Content/Image/loading-x.gif" class="img-responsive" onload="this.onload = null; this.src = '@post.SharedUrl';" />
                         </a>
                         <br />
                     }
@@ -27,9 +28,11 @@
                     }
                 </div><ul class="list-group">
                     <li class="list-group-item"></li>
-                    <li class="list-group-item">Points: @post.Points.Sum(x => x.Value)</li>
-                    <li class="list-group-item"><b>Created by:</b>@post.Author.UserName</li>
-                    <li class="list-group-item"><b>Created on:</b>@post.CreatedOn</li>
+                    <li class="list-group-item">Points : @post.Points.Sum(x => x.Value)</li>
+                    <li class="list-group-item"><b>Created by : </b>@post.Author.UserName</li>
+                    <li class="list-group-item"><b>Created on : </b>@post.CreatedOn</li>
+                          <li class="list-group-item"><b>Comments : </b>@post.Comments.Count()</li>
+
                 </ul>
             </div>
         </div>
